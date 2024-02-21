@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { PostObj } from '../../types/types';
 import Post from './Post';
-import { getPosts } from '../../helper/helper';
+import { getApiData } from '../../helper/helper';
 
 const postUrl = 'https://jsonplaceholder.typicode.com/posts';
 
@@ -15,7 +15,8 @@ export default function PostsList() {
     //   const posts = await getPosts(postUrl);
     //   setPostsArr(posts);
     // })();
-    getPosts(postUrl).then(setPostsArr);
+    // Bendrinis tipas (generics)
+    getApiData<PostObj[]>(postUrl).then((data) => setPostsArr(data || []));
   }, []);
 
   // function getPosts() {

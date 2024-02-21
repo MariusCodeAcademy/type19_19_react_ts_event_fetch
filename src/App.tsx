@@ -5,6 +5,7 @@ import Login from './components/Login';
 import { type UserObjType } from './types/types';
 import Button from './components/UI/Button';
 import PostsList from './components/posts/PostsList';
+import SinglePostPage from './components/posts/SinglePostPage';
 
 const validPass = '123456';
 
@@ -35,6 +36,7 @@ export default function App() {
     <div className='container'>
       <h1 className='display-2'>App</h1>
       <PostsList />
+      <SinglePostPage />
       {false && (
         <>
           <Button submit>Test btn</Button>
