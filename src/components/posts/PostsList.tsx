@@ -30,12 +30,13 @@ export default function PostsList() {
       <h2>Posts</h2>
       <ul className='row unlisted'>
         {postsArr.map((pObj) => (
-          <li className='col-md-4'>
+          <li key={pObj.id} className='col-md-4 col-sm-6'>
+            {/* <Post /> */}
             <div className='card text-bg-light mb-3'>
               <div className='card-header'>Post id: {pObj.id}</div>
               <div className='card-body'>
-                <h5 className='card-title'>{pObj.title}</h5>
-                <p className='card-text'>{pObj.body}</p>
+                <h5 className='card-title'>{pObj.title.slice(0, 25)}</h5>
+                <p className='card-text'>{pObj.body.slice(0, 100)}...</p>
               </div>
             </div>
           </li>
