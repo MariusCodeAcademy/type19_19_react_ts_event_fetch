@@ -1,4 +1,5 @@
 // import React from 'react';
+import './App.css';
 import { useState } from 'react';
 import Login from './components/Login';
 import { type UserObjType } from './types/types';
