@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { type UserObjType } from '../types/types';
 import Button from './UI/Button';
+import Input from './UI/Input';
 
 type LoginProps = {
   onLogin: (a: UserObjType) => void;
@@ -64,6 +65,9 @@ export default function Login(props: LoginProps) {
             className='form-control'
             id='password'
           />
+        </div>
+        <div className='mb-3'>
+          <Input value={passVal} onChange={ennterPasswordHandler} />
         </div>
 
         <Button submit>Submit</Button>
