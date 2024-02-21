@@ -9,7 +9,7 @@ const validPass = '123456';
 
 export default function App() {
   const [userObj, setUserObj] = useState<UserObjType | null>(null);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState('');
 
   function getUser(obj: UserObjType) {
     // gauti sita console log be klaidu
@@ -19,10 +19,10 @@ export default function App() {
     // pries setinant useri patikrinti ar slaptazodis yra toks kaip validPass
     if (obj.password === validPass) {
       setUserObj(obj);
-      setIsError(false);
+      setIsError('');
     } else {
       console.log('neteisingas slaptaz');
-      setIsError(true);
+      setIsError('Neteisingas email arba slaptazodis');
     }
 
     // jei nera tai norim pranesti apie klaida
@@ -35,7 +35,7 @@ export default function App() {
       <h1 className='display-2'>App</h1>
       <Button submit>Test btn</Button>
       {isError && <div className='alert alert-danger'>Neteisingas email arba slaptazodis</div>}
-      {userObj === null && <Login onLogin={getUser} />}
+      {userObj === null && <Login onLogin={getUser} error={isError} />}
 
       {/* rodyti sita kai neteisingas slaptazodis */}
 

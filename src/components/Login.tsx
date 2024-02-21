@@ -6,6 +6,7 @@ import LabelInput from './UI/LabelInput';
 
 type LoginProps = {
   onLogin: (a: UserObjType) => void;
+  error: string;
 };
 //
 export default function Login(props: LoginProps) {
@@ -62,7 +63,7 @@ export default function Login(props: LoginProps) {
             value={passVal}
             onChange={ennterPasswordHandler}
             type='password'
-            error='Neteisingai'
+            error={props.error}
           />
           {/* <label htmlFor='password' className='form-label'>
             Password
