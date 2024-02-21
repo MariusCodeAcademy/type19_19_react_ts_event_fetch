@@ -1,7 +1,11 @@
 import { useState } from 'react';
+import { type UserObjType } from '../types/types';
 
+type LoginProps = {
+  onLogin: (a: UserObjType) => void;
+};
 //
-export default function Login() {
+export default function Login(props: LoginProps) {
   const [emailVal, setEmailVal] = useState('');
   const [passVal, setPassVal] = useState('');
 
@@ -18,11 +22,12 @@ export default function Login() {
     // sustabdyti forma nuo psl perkrovimo
     event.preventDefault();
     // atspausdinti user objekta {email: '', password: ''}
-    const userObj = {
+    const userObj: UserObjType = {
       email: emailVal,
       password: passVal,
     };
     console.log('userObj ===', userObj);
+    props.onLogin(userObj);
   };
 
   return (
