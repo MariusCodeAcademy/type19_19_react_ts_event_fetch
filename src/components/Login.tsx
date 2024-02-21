@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { type UserObjType } from '../types/types';
 import Button from './UI/Button';
 import Input from './UI/Input';
+import LabelInput from './UI/LabelInput';
 
 type LoginProps = {
   onLogin: (a: UserObjType) => void;
@@ -55,7 +56,14 @@ export default function Login(props: LoginProps) {
         </div>
         {/* pass input */}
         <div className='mb-3'>
-          <label htmlFor='password' className='form-label'>
+          <LabelInput
+            id='password'
+            label='Password'
+            value={passVal}
+            onChange={ennterPasswordHandler}
+            type='password'
+          />
+          {/* <label htmlFor='password' className='form-label'>
             Password
           </label>
           <input
@@ -64,7 +72,7 @@ export default function Login(props: LoginProps) {
             type='password'
             className='form-control'
             id='password'
-          />
+          /> */}
         </div>
         <div className='mb-3'>
           {/* prideti type ir id propsus */}
