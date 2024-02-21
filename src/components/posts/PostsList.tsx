@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { PostObj } from '../../types/types';
+import Post from './Post';
 
 const postUrl = 'https://jsonplaceholder.typicode.com/posts';
 
@@ -31,14 +32,7 @@ export default function PostsList() {
       <ul className='row unlisted'>
         {postsArr.map((pObj) => (
           <li key={pObj.id} className='col-md-4 col-sm-6'>
-            {/* <Post /> */}
-            <div className='card text-bg-light mb-3'>
-              <div className='card-header'>Post id: {pObj.id}</div>
-              <div className='card-body'>
-                <h5 className='card-title'>{pObj.title.slice(0, 25)}</h5>
-                <p className='card-text'>{pObj.body.slice(0, 100)}...</p>
-              </div>
-            </div>
+            <Post item={pObj} />
           </li>
         ))}
       </ul>
