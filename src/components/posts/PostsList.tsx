@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { PostObj } from '../../types/types';
 import Post from './Post';
+import { getPosts } from '../../helper/helper';
 
 const postUrl = 'https://jsonplaceholder.typicode.com/posts';
 
@@ -10,21 +11,25 @@ export default function PostsList() {
   const [postsArr, setPostsArr] = useState<PostObj[] | []>([]);
   console.log('postsArr ===', postsArr);
   useEffect(() => {
-    getPosts();
+    // (async () => {
+    //   const posts = await getPosts(postUrl);
+    //   setPostsArr(posts);
+    // })();
+    getPosts(postUrl).then(setPostsArr);
   }, []);
 
-  function getPosts() {
-    // susiusti fetch
-    fetch(postUrl)
-      .then((resp) => resp.json())
-      .then((ats: PostObj[]) => {
-        setPostsArr(ats.slice(0, 15));
-        // console.log('ats ===', JSON.stringify(ats[0]));
-      })
-      .catch((error: Error) => {
-        console.warn('ivyko klaida:', error.message);
-      });
-  }
+  // function getPosts() {
+  //   // susiusti fetch
+  //   fetch(postUrl)
+  //     .then((resp) => resp.json())
+  //     .then((ats: PostObj[]) => {
+  //       setPostsArr(ats.slice(0, 15));
+  //       // console.log('ats ===', JSON.stringify(ats[0]));
+  //     })
+  //     .catch((error: Error) => {
+  //       console.warn('ivyko klaida:', error.message);
+  //     });
+  // }
 
   return (
     <div>
