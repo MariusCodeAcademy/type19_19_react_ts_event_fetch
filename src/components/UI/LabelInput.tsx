@@ -4,9 +4,17 @@ type LabelInputProps = {
   type?: 'text' | 'password' | 'email' | 'number';
   id: string;
   label: string;
+  error?: string;
 };
 
-export default function LabelInput({ value, onChange, type = 'text', id, label }: LabelInputProps) {
+export default function LabelInput({
+  value,
+  onChange,
+  type = 'text',
+  id,
+  label,
+  error,
+}: LabelInputProps) {
   return (
     <>
       <label htmlFor={id} className='form-label w-100'>
@@ -20,6 +28,7 @@ export default function LabelInput({ value, onChange, type = 'text', id, label }
           id={id}
         />
       </label>
+      {error && <p className='text-danger'>{error}</p>}
     </>
   );
 }

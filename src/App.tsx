@@ -33,7 +33,6 @@ export default function App() {
   return (
     <div className='container'>
       <h1 className='display-2'>App</h1>
-      <Input />
       <Button submit>Test btn</Button>
       {isError && <div className='alert alert-danger'>Neteisingas email arba slaptazodis</div>}
       {userObj === null && <Login onLogin={getUser} />}

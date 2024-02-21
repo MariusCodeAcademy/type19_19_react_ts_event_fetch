@@ -62,6 +62,7 @@ export default function Login(props: LoginProps) {
             value={passVal}
             onChange={ennterPasswordHandler}
             type='password'
+            error='Neteisingai'
           />
           {/* <label htmlFor='password' className='form-label'>
             Password
