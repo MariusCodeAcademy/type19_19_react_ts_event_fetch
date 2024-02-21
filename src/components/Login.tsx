@@ -67,6 +67,7 @@ export default function Login(props: LoginProps) {
           />
         </div>
         <div className='mb-3'>
+          {/* prideti type ir id propsus */}
           <Input value={passVal} onChange={ennterPasswordHandler} />
         </div>
 
