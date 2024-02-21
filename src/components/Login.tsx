@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { type UserObjType } from '../types/types';
+import Button from './UI/Button';
 
 type LoginProps = {
   onLogin: (a: UserObjType) => void;
@@ -65,9 +66,7 @@ export default function Login(props: LoginProps) {
           />
         </div>
 
-        <button type='submit' className='btn btn-primary'>
-          Submit
-        </button>
+        <Button submit>Submit</Button>
       </form>
     </div>
   );
