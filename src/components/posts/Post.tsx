@@ -14,7 +14,7 @@ export default function Post({ item }: PostProps) {
         <p className='card-text'>{item.body.slice(0, 100)}...</p>
       </div>
       <div className='card-footer'>
-        <Link to={'/posts/1'} className='btn btn-outline-secondary'>
+        <Link to={`/posts/${item.id}`} className='btn btn-outline-secondary'>
           Read more...
         </Link>
       </div>
