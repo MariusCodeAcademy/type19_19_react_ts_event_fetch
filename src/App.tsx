@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import PostsPage from './pages/PostsPage';
 import AboutPage from './pages/AboutPage';
 import Header from './components/layout/Header';
+import NotFoundPage from './pages/NotFoundPage';
 
 // 404 not found page support
 
@@ -22,6 +23,7 @@ export default function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/posts' element={<PostsPage />} />
         <Route path='/about' element={<AboutPage />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </div>
   );

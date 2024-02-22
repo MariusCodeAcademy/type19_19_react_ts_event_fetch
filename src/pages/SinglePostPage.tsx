@@ -8,22 +8,22 @@ export default function SinglePostPage() {
   // pasiimti currentPosId is routerio
   // parsiusti konkretu posta
 
-  const [currnetPost, setCurrnetPost] = useState<PostObj | null>(null);
+  const [currentPost, setCurrentPost] = useState<PostObj | null>(null);
 
-  console.log('currnetPost ===', currnetPost);
+  console.log('currentPost ===', currentPost);
 
   useEffect(() => {
     getApiData<PostObj>(postUrl).then((post) => {
       // jei post ne void
       if (post) {
-        setCurrnetPost(post);
+        setCurrentPost(post);
       }
     });
   }, []);
 
   return (
     <div>
-      <h1>{currnetPost?.title}</h1>
+      <h1>{currentPost?.title}</h1>
     </div>
   );
 }
