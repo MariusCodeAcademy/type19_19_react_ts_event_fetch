@@ -5,10 +5,12 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import PostsPage from './pages/PostsPage';
 import AboutPage from './pages/AboutPage';
+import Header from './components/layout/Header';
 
 export default function App() {
   return (
     <div className=''>
+      <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/posts' element={<PostsPage />} />
