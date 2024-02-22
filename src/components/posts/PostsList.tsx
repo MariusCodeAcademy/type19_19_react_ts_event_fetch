@@ -1,13 +1,13 @@
 //
 
 import { useEffect, useState } from 'react';
-import { PostObj } from '../../types/types';
+import { DummyPostType, DummyResponseType } from '../../types/types';
 import Post from './Post';
 import { getApiData } from '../../helper/helper';
 import { dummyPostUrl } from '../../config';
 
 export default function PostsList() {
-  const [postsArr, setPostsArr] = useState<PostObj[] | []>([]);
+  const [postsArr, setPostsArr] = useState<DummyPostType[] | []>([]);
   console.log('postsArr ===', postsArr);
   useEffect(() => {
     // (async () => {
@@ -15,18 +15,16 @@ export default function PostsList() {
     //   setPostsArr(posts);
     // })();
     // Bendrinis tipas (generics)
-    getApiData<PostObj[]>(dummyPostUrl).then((data) => {
-      if (data) {
-        console.log('data ===', data);
-      }
-      // setPostsArr(data || []);
+    getApiData<DummyResponseType>(dummyPostUrl).then((data) => {
+      if (!data) return;
+      console.log('data ===', data);
+      setPostsArr(data.posts);
     });
   }, []);
 
   return (
     <div>
-      <h2>Posts</h2>
-      <ul className='row unlisted'>
+      <ul className='row unlisted mt-4'>
         {postsArr.map((pObj) => (
           <li key={pObj.id} className='col-md-4 col-sm-6'>
             <Post item={pObj} />
