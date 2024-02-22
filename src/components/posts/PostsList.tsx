@@ -9,11 +9,32 @@ import { dummyPostUrl } from '../../config';
 export default function PostsList() {
   const [postsArr, setPostsArr] = useState<DummyPostType[] | []>([]);
   const [limtiVal, setLimtiVal] = useState('all');
+  const [searchVal, setSearchVal] = useState('');
+
+  // gaunam visus tagus
+  const differentTags: { id: number; value: string }[] = postsArr
+    .map((pObj) => pObj.tags)
+    .flat()
+    .reduce((diffArr, strTag, idx) => {
+      if (!diffArr.some((obj) => obj.value === strTag)) {
+        diffArr.push({
+          id: idx,
+          value: strTag,
+        });
+      }
+      return diffArr;
+    }, [] as { id: number; value: string }[]);
+  console.log('differentTags ===', differentTags);
 
   // jei paduota reikme is selecto yra 'all' tai filteredPostArr === postsArr kitu atveju filtruojam
   // ternary salyga ? 'true' : 'false'
   const filteredPostArr: DummyPostType[] =
     limtiVal === 'all' ? postsArr : postsArr.filter((pObj) => pObj.id <= Number(limtiVal));
+
+  // Search by title logic
+  const postsAfterSearch: DummyPostType[] = filteredPostArr.filter((pObj) =>
+    pObj.title.includes(searchVal),
+  );
 
   console.log('postsArr ===', postsArr);
   useEffect(() => {
@@ -46,9 +67,11 @@ export default function PostsList() {
               </select>
             </div>
             <div className='col-md-4'>
-              <label htmlFor='search'>Search ()</label>
+              <label htmlFor='search'>Search ({postsAfterSearch.length})</label>
               <div className='input-group'>
                 <input
+                  value={searchVal}
+                  onChange={(ev) => setSearchVal(ev.target.value)}
                   type='search'
                   className='form-control'
                   id='search'
@@ -63,7 +86,7 @@ export default function PostsList() {
         </div>
       </div>
       <ul className='row unlisted mt-4'>
-        {filteredPostArr.map((pObj) => (
+        {postsAfterSearch.map((pObj) => (
           <li key={pObj.id} className='col-md-4 col-sm-6'>
             <Post item={pObj} />
           </li>
