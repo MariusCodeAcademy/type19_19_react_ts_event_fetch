@@ -27,16 +27,18 @@ export default function PostsList() {
       <div className='card'>
         <div className='card-body'>
           <h3>Filters</h3>
-          <div>
-            <label htmlFor='limit'>Limit</label>
-            <select className='form-select' id='limit' aria-label='Default select example'>
-              <option selected value='all'>
-                All
-              </option>
-              <option value='5'>5</option>
-              <option value='10'>10</option>
-              <option value='15'>15</option>
-            </select>
+          <div className='row'>
+            <div className='col-4'>
+              <label htmlFor='limit'>Limit</label>
+              <select className='form-select' id='limit' aria-label='Default select example'>
+                <option selected value='all'>
+                  All
+                </option>
+                <option value='5'>5</option>
+                <option value='10'>10</option>
+                <option value='15'>15</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
