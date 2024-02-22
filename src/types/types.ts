@@ -25,3 +25,6 @@ export type DummyPostType = {
   tags: string[];
   reactions: number;
 };
+// type TagsListProps = {
+//   list: DummyPostType['tags'];
+// };
