@@ -60,6 +60,6 @@ export default function PostsList() {
 }
 
 // TODO:
-// is postsArr atrinkti visus skirtingu tagus
+// is postsArr atrinkti visus skirtingu tagus string masyvo pavidale
 // sugenruoti objektu masyva
 // [{id: 1, tag: 'american'}, {id: 2, tag: 'history'}]
