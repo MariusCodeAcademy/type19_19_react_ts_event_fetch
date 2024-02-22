@@ -5,6 +5,7 @@ type TagsListProps = {
 };
 
 export default function TagsList({ list }: TagsListProps) {
+  // TODO: make tags different color
   return (
     <div className='border-top p-2 d-flex gap-2'>
       {list.map((tagString) => (

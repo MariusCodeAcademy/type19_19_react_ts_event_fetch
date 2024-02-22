@@ -8,6 +8,10 @@ import { dummyPostUrl } from '../../config';
 
 export default function PostsList() {
   const [postsArr, setPostsArr] = useState<DummyPostType[] | []>([]);
+  // TODO:
+  // is postsArr atrinkti visus skirtingu tagus
+  // sugenruoti objektu masyva
+  // [{id: 1, tag: 'american'}, {id: 2, tag: 'history'}]
   console.log('postsArr ===', postsArr);
   useEffect(() => {
     // (async () => {
