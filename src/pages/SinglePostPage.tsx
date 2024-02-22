@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PostObj } from '../types/types';
 import { getApiData } from '../helper/helper';
-import { Params, useParams } from 'react-router-dom';
+import { Link, Params, useParams } from 'react-router-dom';
 
 const postUrl = 'https://jsonplaceholder.typicode.com/posts';
 
@@ -31,14 +31,10 @@ export default function SinglePostPage() {
     <div className='container'>
       <h1 className='display-2 my-3'>{currentPost?.title}</h1>
       <p className='lead'>Post Id: {currentPost?.id}</p>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde in, vel totam eum delectus
-        blanditiis molestiae pariatur nemo sunt consequuntur quo sed quasi quos iusto quas deserunt
-        id nisi fugit eius provident. Molestiae doloremque pariatur nobis voluptates quam totam id.
-        Porro placeat perspiciatis impedit blanditiis, necessitatibus accusantium ipsum aspernatur.
-        Laborum.
-      </p>
-      <button className='btn btn-dark'>Click here</button>
+      <p>{currentPost?.body}</p>
+      <Link to={'/posts'} className='btn btn-dark'>
+        Back to posts
+      </Link>
     </div>
   );
 }
