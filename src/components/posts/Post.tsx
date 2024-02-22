@@ -13,6 +13,7 @@ export default function Post({ item }: PostProps) {
         <h5 className='card-title'>{item.title.slice(0, 25)}</h5>
         <p className='card-text'>{item.body.slice(0, 100)}...</p>
       </div>
+      {/* <TagsList /> */}
       <div className='border-top p-2 d-flex gap-2'>
         <span className='badge text-bg-dark'>Light</span>
         <span className='badge text-bg-dark'>Light</span>
