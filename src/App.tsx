@@ -7,6 +7,13 @@ import PostsPage from './pages/PostsPage';
 import AboutPage from './pages/AboutPage';
 import Header from './components/layout/Header';
 
+// 404 not found page support
+
+// add SinglePostPage.tsx to routes
+// /pages/1
+// /pages/2
+// /pages/15
+
 export default function App() {
   return (
     <div className=''>

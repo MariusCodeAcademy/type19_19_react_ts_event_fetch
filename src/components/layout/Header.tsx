@@ -1,13 +1,15 @@
 //
 
+import { Link, NavLink } from 'react-router-dom';
+
 export default function Header() {
   return (
     <header>
-      <nav className='navbar navbar-expand-lg bg-body-tertiary'>
-        <div className='container-fluid'>
-          <a className='navbar-brand' href='#'>
-            Navbar
-          </a>
+      <nav data-bs-theme='dark' className='navbar navbar-expand-sm bg-body-tertiary'>
+        <div className='container'>
+          <Link className='navbar-brand' to='/'>
+            React TS Router
+          </Link>
           <button
             className='navbar-toggler'
             type='button'
@@ -18,20 +20,17 @@ export default function Header() {
             aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon'></span>
           </button>
-          <div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
+          <div className='collapse navbar-collapse justify-content-end' id='navbarNavAltMarkup'>
             <div className='navbar-nav'>
-              <a className='nav-link active' aria-current='page' href='#'>
+              <NavLink className='nav-link' to='/'>
                 Home
-              </a>
-              <a className='nav-link' href='#'>
-                Features
-              </a>
-              <a className='nav-link' href='#'>
-                Pricing
-              </a>
-              <a className='nav-link disabled' aria-disabled='true'>
-                Disabled
-              </a>
+              </NavLink>
+              <NavLink className='nav-link' to='/posts'>
+                Posts
+              </NavLink>
+              <NavLink className='nav-link' to='/about'>
+                About
+              </NavLink>
             </div>
           </div>
         </div>

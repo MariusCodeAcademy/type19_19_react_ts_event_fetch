@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import { PostObj } from '../../types/types';
-import { getApiData } from '../../helper/helper';
+import { PostObj } from '../types/types';
+import { getApiData } from '../helper/helper';
 
 const postUrl = 'https://jsonplaceholder.typicode.com/posts/15';
 
 export default function SinglePostPage() {
+  // pasiimti currentPosId is routerio
+  // parsiusti konkretu posta
+
   const [currnetPost, setCurrnetPost] = useState<PostObj | null>(null);
 
   console.log('currnetPost ===', currnetPost);
@@ -20,7 +23,7 @@ export default function SinglePostPage() {
 
   return (
     <div>
-      <h1>SinglePostPage</h1>
+      <h1>{currnetPost?.title}</h1>
     </div>
   );
 }
