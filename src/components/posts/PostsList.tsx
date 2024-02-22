@@ -8,10 +8,13 @@ import { dummyPostUrl } from '../../config';
 
 export default function PostsList() {
   const [postsArr, setPostsArr] = useState<DummyPostType[] | []>([]);
-  // TODO:
-  // is postsArr atrinkti visus skirtingu tagus
-  // sugenruoti objektu masyva
-  // [{id: 1, tag: 'american'}, {id: 2, tag: 'history'}]
+  const [limtiVal, setLimtiVal] = useState('all');
+
+  // jei paduota reikme is selecto yra 'all' tai filteredPostArr === postsArr kitu atveju filtruojam
+  // ternary salyga ? 'true' : 'false'
+  const filteredPostArr: DummyPostType[] =
+    limtiVal === 'all' ? postsArr : postsArr.filter((pObj) => pObj.id <= Number(limtiVal));
+
   console.log('postsArr ===', postsArr);
   useEffect(() => {
     // Bendrinis tipas (generics)
@@ -29,11 +32,14 @@ export default function PostsList() {
           <h3>Filters</h3>
           <div className='row'>
             <div className='col-4'>
-              <label htmlFor='limit'>Limit</label>
-              <select className='form-select' id='limit' aria-label='Default select example'>
-                <option selected value='all'>
-                  All
-                </option>
+              <label htmlFor='limit'>Limit ({limtiVal})</label>
+              <select
+                value={limtiVal}
+                onChange={(e) => setLimtiVal(e.target.value)}
+                className='form-select'
+                id='limit'
+                aria-label='Default select example'>
+                <option value='all'>All</option>
                 <option value='5'>5</option>
                 <option value='10'>10</option>
                 <option value='15'>15</option>
@@ -43,7 +49,7 @@ export default function PostsList() {
         </div>
       </div>
       <ul className='row unlisted mt-4'>
-        {postsArr.map((pObj) => (
+        {filteredPostArr.map((pObj) => (
           <li key={pObj.id} className='col-md-4 col-sm-6'>
             <Post item={pObj} />
           </li>
@@ -52,3 +58,8 @@ export default function PostsList() {
     </div>
   );
 }
+
+// TODO:
+// is postsArr atrinkti visus skirtingu tagus
+// sugenruoti objektu masyva
+// [{id: 1, tag: 'american'}, {id: 2, tag: 'history'}]
