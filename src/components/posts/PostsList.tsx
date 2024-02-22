@@ -31,7 +31,7 @@ export default function PostsList() {
         <div className='card-body'>
           <h3>Filters</h3>
           <div className='row'>
-            <div className='col-4'>
+            <div className='col-md-4 '>
               <label htmlFor='limit'>Limit ({limtiVal})</label>
               <select
                 value={limtiVal}
@@ -44,6 +44,20 @@ export default function PostsList() {
                 <option value='10'>10</option>
                 <option value='15'>15</option>
               </select>
+            </div>
+            <div className='col-md-4'>
+              <label htmlFor='search'>Search ()</label>
+              <div className='input-group'>
+                <input
+                  type='search'
+                  className='form-control'
+                  id='search'
+                  placeholder='Search here'
+                />
+                <button className='btn btn-outline-secondary' type='button' id='button-addon2'>
+                  Search
+                </button>
+              </div>
             </div>
           </div>
         </div>
