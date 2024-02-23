@@ -82,6 +82,23 @@ export default function PostsList() {
                 </button>
               </div>
             </div>
+            <div className='col-md-4 '>
+              <label htmlFor='tags'>Tags ()</label>
+              <select
+                value={limtiVal}
+                onChange={(e) => setLimtiVal(e.target.value)}
+                className='form-select'
+                id='tags'
+                aria-label='Default select example'>
+                <option value='all'>All</option>
+                {differentTags.map((tObj) => (
+                  <option key={tObj.id} value={tObj.value}>
+                    {tObj.value.charAt(0).toUpperCase()}
+                    {tObj.value.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
       </div>
