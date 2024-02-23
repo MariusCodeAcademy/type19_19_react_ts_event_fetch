@@ -10,6 +10,17 @@ export default function PostsList() {
   const [postsArr, setPostsArr] = useState<DummyPostType[] | []>([]);
   const [limtiVal, setLimtiVal] = useState('all');
   const [searchVal, setSearchVal] = useState('');
+  const [selectedTag, setSelectedTag] = useState('all');
+
+  function selectTagClickHandler(tag: string) {
+    console.log('tag ===', tag);
+    setSelectedTag(tag);
+  }
+
+  const tagFiltered =
+    selectedTag === 'all' ? postsArr : postsArr.filter((pObj) => pObj.tags.includes(selectedTag));
+  console.log('tagFiltered ===', tagFiltered);
+  // console.table(tagFiltered.map((p) => p.tags));
 
   // gaunam visus tagus
   const differentTags: { id: number; value: string }[] = postsArr
@@ -24,12 +35,12 @@ export default function PostsList() {
       }
       return diffArr;
     }, [] as { id: number; value: string }[]);
-  console.log('differentTags ===', differentTags);
+  // console.log('differentTags ===', differentTags);
 
   // jei paduota reikme is selecto yra 'all' tai filteredPostArr === postsArr kitu atveju filtruojam
   // ternary salyga ? 'true' : 'false'
   const filteredPostArr: DummyPostType[] =
-    limtiVal === 'all' ? postsArr : postsArr.filter((pObj) => pObj.id <= Number(limtiVal));
+    limtiVal === 'all' ? tagFiltered : tagFiltered.filter((pObj) => pObj.id <= Number(limtiVal));
 
   // Search by title logic
   const postsAfterSearch: DummyPostType[] = filteredPostArr.filter((pObj) =>
@@ -85,8 +96,8 @@ export default function PostsList() {
             <div className='col-md-4 '>
               <label htmlFor='tags'>Tags ()</label>
               <select
-                value={limtiVal}
-                onChange={(e) => setLimtiVal(e.target.value)}
+                value={selectedTag}
+                onChange={(e) => setSelectedTag(e.target.value)}
                 className='form-select'
                 id='tags'
                 aria-label='Default select example'>
@@ -105,7 +116,7 @@ export default function PostsList() {
       <ul className='row unlisted mt-4'>
         {postsAfterSearch.map((pObj) => (
           <li key={pObj.id} className='col-md-4 col-sm-6'>
-            <Post item={pObj} />
+            <Post handleSelectTag={selectTagClickHandler} item={pObj} />
           </li>
         ))}
       </ul>
