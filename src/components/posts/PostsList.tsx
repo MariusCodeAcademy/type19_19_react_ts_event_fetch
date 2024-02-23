@@ -8,10 +8,40 @@ import { dummyPostUrl } from '../../config';
 
 export default function PostsList() {
   const [postsArr, setPostsArr] = useState<DummyPostType[] | []>([]);
-  const [limtiVal, setLimtiVal] = useState('all');
+  const [limtiVal, setLimtiVal] = useState('5');
   const [searchVal, setSearchVal] = useState('');
 
-  console.log('postsArr ===', postsArr);
+  console.log('limtiVal ===', limtiVal);
+  console.log('searchVal ===', searchVal);
+  // 'https://dummyjson.com/posts/search?q=love'
+  // "https://dummyjson.com/posts"
+
+  const searchQuery = `/search?q=${searchVal}`;
+
+  console.log('postsArr ===', postsArr.length);
+
+  function handleLimit(e: React.ChangeEvent<HTMLSelectElement>) {
+    setLimtiVal(e.target.value);
+    console.log('limtiVal handleLimit ===', limtiVal);
+
+    const query = e.target.value === 'all' ? '' : `?limit=${e.target.value}`;
+
+    getApiData<DummyResponseType>(`${dummyPostUrl}${query}`).then((data) => {
+      if (!data) return;
+      console.log('data ===', data);
+      setPostsArr(data.posts);
+    });
+  }
+
+  function handleSearch() {
+    // parsiunciam ir irasom papieskos rezultatus
+    getApiData<DummyResponseType>(dummyPostUrl + searchQuery).then((data) => {
+      if (!data) return;
+      console.log('data ===', data);
+      setPostsArr(data.posts);
+    });
+  }
+
   useEffect(() => {
     // Bendrinis tipas (generics)
     getApiData<DummyResponseType>(dummyPostUrl).then((data) => {
@@ -31,7 +61,7 @@ export default function PostsList() {
               <label htmlFor='limit'>Limit ({limtiVal})</label>
               <select
                 value={limtiVal}
-                onChange={(e) => setLimtiVal(e.target.value)}
+                onChange={handleLimit}
                 className='form-select'
                 id='limit'
                 aria-label='Default select example'>
@@ -52,7 +82,11 @@ export default function PostsList() {
                   id='search'
                   placeholder='Search here'
                 />
-                <button className='btn btn-outline-secondary' type='button' id='button-addon2'>
+                <button
+                  onClick={handleSearch}
+                  className='btn btn-outline-secondary'
+                  type='button'
+                  id='button-addon2'>
                   Search
                 </button>
               </div>
