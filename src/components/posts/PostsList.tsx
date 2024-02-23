@@ -10,42 +10,6 @@ export default function PostsList() {
   const [postsArr, setPostsArr] = useState<DummyPostType[] | []>([]);
   const [limtiVal, setLimtiVal] = useState('all');
   const [searchVal, setSearchVal] = useState('');
-  const [selectedTag, setSelectedTag] = useState('all');
-
-  function selectTagClickHandler(tag: string) {
-    console.log('tag ===', tag);
-    setSelectedTag(tag);
-  }
-
-  const tagFiltered =
-    selectedTag === 'all' ? postsArr : postsArr.filter((pObj) => pObj.tags.includes(selectedTag));
-  console.log('tagFiltered ===', tagFiltered);
-  // console.table(tagFiltered.map((p) => p.tags));
-
-  // gaunam visus tagus
-  const differentTags: { id: number; value: string }[] = postsArr
-    .map((pObj) => pObj.tags)
-    .flat()
-    .reduce((diffArr, strTag, idx) => {
-      if (!diffArr.some((obj) => obj.value === strTag)) {
-        diffArr.push({
-          id: idx,
-          value: strTag,
-        });
-      }
-      return diffArr;
-    }, [] as { id: number; value: string }[]);
-  // console.log('differentTags ===', differentTags);
-
-  // jei paduota reikme is selecto yra 'all' tai filteredPostArr === postsArr kitu atveju filtruojam
-  // ternary salyga ? 'true' : 'false'
-  const filteredPostArr: DummyPostType[] =
-    limtiVal === 'all' ? tagFiltered : tagFiltered.filter((pObj) => pObj.id <= Number(limtiVal));
-
-  // Search by title logic
-  const postsAfterSearch: DummyPostType[] = filteredPostArr.filter((pObj) =>
-    pObj.title.includes(searchVal),
-  );
 
   console.log('postsArr ===', postsArr);
   useEffect(() => {
@@ -78,7 +42,7 @@ export default function PostsList() {
               </select>
             </div>
             <div className='col-md-4'>
-              <label htmlFor='search'>Search ({postsAfterSearch.length})</label>
+              <label htmlFor='search'>Search ()</label>
               <div className='input-group'>
                 <input
                   value={searchVal}
@@ -93,30 +57,13 @@ export default function PostsList() {
                 </button>
               </div>
             </div>
-            <div className='col-md-4 '>
-              <label htmlFor='tags'>Tags ()</label>
-              <select
-                value={selectedTag}
-                onChange={(e) => setSelectedTag(e.target.value)}
-                className='form-select'
-                id='tags'
-                aria-label='Default select example'>
-                <option value='all'>All</option>
-                {differentTags.map((tObj) => (
-                  <option key={tObj.id} value={tObj.value}>
-                    {tObj.value.charAt(0).toUpperCase()}
-                    {tObj.value.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </div>
           </div>
         </div>
       </div>
       <ul className='row unlisted mt-4'>
-        {postsAfterSearch.map((pObj) => (
+        {postsArr.map((pObj) => (
           <li key={pObj.id} className='col-md-4 col-sm-6'>
-            <Post handleSelectTag={selectTagClickHandler} item={pObj} />
+            <Post item={pObj} />
           </li>
         ))}
       </ul>

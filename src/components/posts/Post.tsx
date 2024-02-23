@@ -4,10 +4,9 @@ import TagsList from './TagsList';
 
 type PostProps = {
   item: DummyPostType;
-  handleSelectTag: (tagsVal: string) => void;
 };
 
-export default function Post({ item, handleSelectTag }: PostProps) {
+export default function Post({ item }: PostProps) {
   return (
     <div className='card text-bg-light mb-3'>
       <div className='card-header'>Post id: {item.id}</div>
@@ -15,7 +14,7 @@ export default function Post({ item, handleSelectTag }: PostProps) {
         <h5 className='card-title'>{item.title.slice(0, 25)}</h5>
         {/* <p className='card-text'>{item.body.slice(0, 100)}...</p> */}
       </div>
-      <TagsList onClick={handleSelectTag} list={item.tags} />
+      <TagsList list={item.tags} />
 
       <div className='card-footer'>
         <Link to={`/posts/${item.id}`} className='btn btn-outline-secondary'>
