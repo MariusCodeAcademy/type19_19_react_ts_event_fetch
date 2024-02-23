@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DummyPostType, PostObj } from '../types/types';
+import { DummyPostType } from '../types/types';
 import { getApiData } from '../helper/helper';
 import { Link, Params, useParams } from 'react-router-dom';
 import { dummyPostUrl } from '../config';
